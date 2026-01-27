@@ -245,7 +245,7 @@ export default function PaymentsPage() {
 
                 <div className="flex items-center justify-between py-2 border-b border-blue-200">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-900">Paid to Amazon</span>
+                    <span className="text-sm text-gray-900">Paid to Zuuro</span>
                     <Info size={14} className="text-gray-400" />
                   </div>
                   <span className="text-sm font-normal text-blue-600">{formatCurrency(paymentData.paidToAmazon)}</span>
