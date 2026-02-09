@@ -11,6 +11,8 @@ import ProductManagementPage from './components/ProductManagementPage';
 import Sidebar from './components/Sidebar';
 import OrdersPage from './components/OrdersPage';
 import PaymentsPage from './components/PaymentsPage';
+import ReportsPage from './components/ReportsPage';
+import PhotoshootPage from './components/PhotoshootPage';
 
 type MenuItem = 'dashboard' | 'orders' | 'products' | 'payments' | 'reports';
 
@@ -194,6 +196,10 @@ function App() {
           <OrdersPage />
         ) : activeTab === 'payments' ? (
           <PaymentsPage />
+        ) : activeTab === 'report' ? (
+          <ReportsPage />
+        ) : activeTab === 'photoshoot' ? (
+          <PhotoshootPage />
         ) : activeTab === 'my-business' ? (
           <div className="flex-1 overflow-auto">
             <div className="max-w-[1400px] mx-auto px-4 pt-4">

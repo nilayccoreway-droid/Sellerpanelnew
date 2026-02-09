@@ -76,24 +76,6 @@ export default function OrdersPage() {
                   </div>
                 </div>
               </div>
-
-              <div style="display:none;">
-                <h3 className="text-sm font-semibold text-gray-900 mb-3">Fulfilled by Amazon</h3>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <div className="text-xs text-gray-600 mb-1">Pending</div>
-                    <div className="text-2xl font-normal text-gray-900">0</div>
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-600 mb-1">Total</div>
-                    <div className="text-2xl font-normal text-gray-900">0</div>
-                  </div>
-                  <div>
-                    <div className="text-xs text-gray-600 mb-1">Canceled</div>
-                    <div className="text-2xl font-normal text-gray-900">0</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
