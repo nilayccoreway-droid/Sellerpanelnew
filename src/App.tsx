@@ -13,6 +13,16 @@ import OrdersPage from './components/OrdersPage';
 import PaymentsPage from './components/PaymentsPage';
 import ReportsPage from './components/ReportsPage';
 import PhotoshootPage from './components/PhotoshootPage';
+import TodayPickupTable from './components/TodayPickupTable';
+import Orders from './components/Orders';
+import Transactions from './components/Transactions';
+import CreditCardManagement from './components/CreditCardManagement';
+import Reviews from './components/Reviews';
+import Support from './components/Support';
+import Help from './components/Help';
+import Membership from './components/Membership';
+import Promotion from './components/Promotion';
+import ProfileSettings from './components/ProfileSettings';
 
 type MenuItem = 'dashboard' | 'orders' | 'products' | 'payments' | 'reports';
 
@@ -49,6 +59,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [activeMenu, setActiveMenu] = useState<MenuItem>('dashboard');
   const [activeTab, setActiveTab] = useState<TabType>('my-business');
+  const [showOrders, setShowOrders] = useState(false);
+  const [showTransactions, setShowTransactions] = useState(false);
+  const [showCreditCard, setShowCreditCard] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
+  const [showSupport, setShowSupport] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
+  const [showMembership, setShowMembership] = useState(false);
+  const [showPromotion, setShowPromotion] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   useEffect(() => {
     fetchDashboardData();
@@ -180,29 +199,187 @@ function App() {
       <Header
         activeMenu={activeMenu}
         onMenuChange={setActiveMenu}
-        onManageProducts={() => setActiveTab('products')}
+        onManageProducts={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('products');
+        }}
+        onManageOrders={() => {
+          setShowOrders(true);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('my-business');
+        }}
+        onManagePayments={() => {
+          setShowOrders(false);
+          setShowTransactions(true);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('payments');
+        }}
+        onManageCreditCard={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(true);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('payments');
+        }}
+        onFeedbacks={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(true);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('products');
+        }}
+        onSupport={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(true);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('my-business');
+        }}
+        onHelp={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(true);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('my-business');
+        }}
+        onMembership={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(true);
+          setShowPromotion(false);
+          setShowSettings(false);
+          setActiveTab('my-business');
+        }}
+        onPromotion={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(true);
+          setShowSettings(false);
+          setActiveTab('my-business');
+        }}
+        onSettings={() => {
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+          setShowPromotion(false);
+          setShowSettings(true);
+          setActiveTab('my-business');
+        }}
       />
 
-      <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} tabs={tabs} />
+      <TabNavigation
+        activeTab={activeTab}
+        onTabChange={(tab) => {
+          setActiveTab(tab);
+          setShowOrders(false);
+          setShowTransactions(false);
+          setShowCreditCard(false);
+          setShowReviews(false);
+          setShowSupport(false);
+          setShowHelp(false);
+          setShowMembership(false);
+        }}
+        tabs={tabs}
+      />
 
       <main className="flex h-[calc(100vh-120px)]">
         <Sidebar />
 
-        {activeTab === 'products' ? (
+        {showOrders ? (
+          <Orders />
+        ) : showTransactions ? (
+          <Transactions onBack={() => {
+            setShowTransactions(false);
+            setActiveTab('payments');
+          }} />
+        ) : showCreditCard ? (
+          <CreditCardManagement onBack={() => {
+            setShowCreditCard(false);
+            setActiveTab('payments');
+          }} />
+        ) : showReviews ? (
+          <Reviews />
+        ) : showSupport ? (
+          <Support />
+        ) : showHelp ? (
+          <Help />
+        ) : showMembership ? (
+          <Membership />
+        ) : showPromotion ? (
+          <Promotion />
+        ) : showSettings ? (
+          <ProfileSettings />
+        ) : activeTab === 'products' ? (
           <div className="flex-1 overflow-auto">
             <ProductManagementPage onBack={() => setActiveTab('my-business')} />
           </div>
         ) : activeTab === 'orders' ? (
           <OrdersPage />
         ) : activeTab === 'payments' ? (
-          <PaymentsPage />
+          <PaymentsPage onManagePayments={() => {
+            setShowTransactions(true);
+          }} />
         ) : activeTab === 'report' ? (
           <ReportsPage />
         ) : activeTab === 'photoshoot' ? (
           <PhotoshootPage />
         ) : activeTab === 'my-business' ? (
-          <div className="flex-1 overflow-auto">
-            <div className="max-w-[1400px] mx-auto px-4 pt-4">
+          <div className="flex-1 bg-gray-50 overflow-auto">
+            <div className="px-6 py-4">
               <ProductActionBar onManageProducts={() => setActiveTab('products')} />
 
               <div className="mt-4">
@@ -236,11 +413,54 @@ function App() {
                 averageRating={dashboardData.averageRating}
                 reviewsCount={dashboardData.reviewsCount}
               />
+
+              <TodayPickupTable
+                orders={[
+                  {
+                    id: '1',
+                    orderId: 'ORD-2024-145',
+                    productName: 'Oval Blue Sapphire Ring',
+                    productImage: 'https://images.pexels.com/photos/1232931/pexels-photo-1232931.jpeg?auto=compress&cs=tinysrgb&w=100',
+                    quantity: 2,
+                    status: 'ready'
+                  },
+                  {
+                    id: '2',
+                    orderId: 'ORD-2024-146',
+                    productName: 'Princess Cut Diamond Ring',
+                    productImage: 'https://images.pexels.com/photos/1131305/pexels-photo-1131305.jpeg?auto=compress&cs=tinysrgb&w=100',
+                    quantity: 1,
+                    status: 'ready'
+                  },
+                  {
+                    id: '3',
+                    orderId: 'ORD-2024-147',
+                    productName: 'Emerald Engagement Ring',
+                    quantity: 3,
+                    status: 'processing'
+                  },
+                  {
+                    id: '4',
+                    orderId: 'ORD-2024-148',
+                    productName: 'Ruby Solitaire Ring',
+                    productImage: 'https://images.pexels.com/photos/1454177/pexels-photo-1454177.jpeg?auto=compress&cs=tinysrgb&w=100',
+                    quantity: 1,
+                    status: 'ready'
+                  },
+                  {
+                    id: '5',
+                    orderId: 'ORD-2024-149',
+                    productName: 'Vintage Gold Band',
+                    quantity: 2,
+                    status: 'pending'
+                  }
+                ]}
+              />
             </div>
           </div>
         ) : (
-          <div className="flex-1 overflow-auto">
-            <div className="max-w-[1400px] mx-auto px-4 pt-4">
+          <div className="flex-1 bg-gray-50 overflow-auto">
+            <div className="px-6 py-4">
               <div className="bg-white border border-gray-200 rounded p-8 text-center">
                 <h2 className="text-xl font-semibold text-gray-900 mb-2 capitalize">
                   {tabs.find(t => t.id === activeTab)?.title}

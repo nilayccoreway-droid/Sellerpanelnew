@@ -68,7 +68,7 @@ export default function PhotoshootPage() {
 
   return (
     <div className="flex-1 bg-gray-50 overflow-auto">
-      <div className="max-w-[1400px] mx-auto px-4 pt-4">
+      <div className="px-6 py-4">
         <div className="bg-white border border-gray-200 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors">
