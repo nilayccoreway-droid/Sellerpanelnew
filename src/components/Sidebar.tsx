@@ -6,7 +6,7 @@ export default function Sidebar() {
   const [hiddenOpen, setHiddenOpen] = useState(false);
 
   return (
-    <div className="w-52 bg-white border-r border-gray-200 flex flex-col h-full">
+    <div className="w-72 bg-white border-r border-gray-200 flex flex-col h-full shadow-sm">
       <div className="flex-1 overflow-y-auto">
         <div className="border-b border-gray-200">
           <div className="px-4 py-3 flex items-center justify-between">
@@ -77,7 +77,7 @@ export default function Sidebar() {
       </div>
 
       <div className="border-t border-gray-200 p-4">
-        <button className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 mb-3">
+        <button className="flex items-center gap-2 text-sm hover:opacity-80 mb-3 transition-opacity" style={{ color: '#00666B' }}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"/>
             <path d="M8 4c-.6 0-1 .4-1 1v2H5c-.6 0-1 .4-1 1s.4 1 1 1h2v2c0 .6.4 1 1 1s1-.4 1-1V9h2c.6 0 1-.4 1-1s-.4-1-1-1H9V5c0-.6-.4-1-1-1z"/>

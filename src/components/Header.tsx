@@ -7,9 +7,18 @@ interface HeaderProps {
   activeMenu: MenuItem;
   onMenuChange: (menu: MenuItem) => void;
   onManageProducts?: () => void;
+  onManageOrders?: () => void;
+  onManagePayments?: () => void;
+  onManageCreditCard?: () => void;
+  onFeedbacks?: () => void;
+  onSupport?: () => void;
+  onHelp?: () => void;
+  onMembership?: () => void;
+  onPromotion?: () => void;
+  onSettings?: () => void;
 }
 
-export default function Header({ activeMenu, onMenuChange, onManageProducts }: HeaderProps) {
+export default function Header({ activeMenu, onMenuChange, onManageProducts, onManageOrders, onManagePayments, onManageCreditCard, onFeedbacks, onSupport, onHelp, onMembership, onPromotion, onSettings }: HeaderProps) {
   const [isManageOpen, setIsManageOpen] = useState(false);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
@@ -119,6 +128,18 @@ export default function Header({ activeMenu, onMenuChange, onManageProducts }: H
                             onClick={() => {
                               if (item === 'Manage products' && onManageProducts) {
                                 onManageProducts();
+                              } else if (item === 'Manage Order' && onManageOrders) {
+                                onManageOrders();
+                              } else if (item === 'Manage Payments' && onManagePayments) {
+                                onManagePayments();
+                              } else if (item === 'Manage Credit Card' && onManageCreditCard) {
+                                onManageCreditCard();
+                              } else if (item === 'Feedbacks' && onFeedbacks) {
+                                onFeedbacks();
+                              } else if (item === 'Manage seller membership' && onMembership) {
+                                onMembership();
+                              } else if (item === 'Promotion' && onPromotion) {
+                                onPromotion();
                               }
                               setIsManageOpen(false);
                             }}
@@ -169,13 +190,22 @@ export default function Header({ activeMenu, onMenuChange, onManageProducts }: H
               )}
             </div>
 
-            <button className="hover:text-gray-300">
+            <button
+              onClick={() => onSupport && onSupport()}
+              className="hover:text-gray-300"
+            >
               <Mail size={20} />
             </button>
-            <button className="hover:text-gray-300">
+            <button
+              onClick={() => onHelp && onHelp()}
+              className="hover:text-gray-300"
+            >
               <HelpCircle size={20} />
             </button>
-            <button className="hover:text-gray-300">
+            <button
+              onClick={() => onSettings && onSettings()}
+              className="hover:text-gray-300"
+            >
               <User size={20} />
             </button>
           </div>
@@ -192,9 +222,8 @@ export default function Header({ activeMenu, onMenuChange, onManageProducts }: H
                   onMenuChange(item.id);
                 }
               }}
-              className={`px-4 h-full text-sm hover:bg-gray-700 transition-colors ${
-                activeMenu === item.id ? 'bg-gray-700 font-medium' : ''
-              }`}
+              className={`px-4 h-full text-sm hover:bg-gray-700 transition-colors ${activeMenu === item.id ? 'bg-gray-700 font-medium' : ''
+                }`}
             >
               {item.label}
             </button>

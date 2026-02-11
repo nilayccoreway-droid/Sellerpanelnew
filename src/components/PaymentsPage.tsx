@@ -55,7 +55,11 @@ function generateRandomPaymentData(): PaymentData {
   };
 }
 
-export default function PaymentsPage() {
+interface PaymentsPageProps {
+  onManagePayments?: () => void;
+}
+
+export default function PaymentsPage({ onManagePayments }: PaymentsPageProps) {
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
 
   useEffect(() => {
@@ -79,7 +83,10 @@ export default function PaymentsPage() {
     <div className="flex-1 bg-gray-50 overflow-auto">
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
-          <button className="px-4 py-2 bg-white border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50">
+          <button
+            onClick={onManagePayments}
+            className="px-4 py-2 bg-white border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50"
+          >
             Manage payments
           </button>
           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50">
@@ -153,11 +160,11 @@ export default function PaymentsPage() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm pb-2 border-b">
                   <span className="text-gray-900">{formatCurrency(paymentData.fundsAvailable)}</span>
-                 
+
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-900">{formatCurrency(paymentData.fundsAvailable)}</span>
-                  
+
                 </div>
               </div>
             </div>
